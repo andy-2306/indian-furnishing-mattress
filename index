@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Furnishing & Mattress</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .header { margin-bottom: 30px; }
+        .header h1 { font-size: 24px; color: #1a1a1a; margin-bottom: 5px; }
+        .header p { font-size: 14px; font-style: italic; color: #666; margin-top: 0; }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            padding: 15px;
+            margin: 10px auto;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: 0.2s;
+        }
+        .btn-google { background-color: #4285F4; color: white; }
+        .btn-insta { background-color: #E1306C; color: white; }
+        .btn-web { background-color: #333333; color: white; }
+        .btn-copy { background-color: #28a745; color: white; margin-top: 10px; }
+        
+        #review-card {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 320px;
+            margin-top: 20px;
+            border-top: 4px solid #4285F4;
+            animation: slideUp 0.4s ease-out;
+        }
+        #review-card p { font-weight: bold; margin-top: 0; }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+            resize: none;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <!-- Optional: You can add a logo image tag here later -->
+        <h1>Indian Furnishing & Mattress</h1>
+        <p>The New Standard.. for better works..</p>
+    </div>
+
+    <!-- Main Menu Buttons -->
+    <button class="btn btn-google" onclick="triggerReviewCard()">⭐ Google Review</button>
+    <button class="btn btn-insta" onclick="window.location.href='https://www.instagram.com/indianfurnishingandmattress/'">📸 Instagram</button>
+    <button class="btn btn-web" onclick="window.location.href='https://www.indianfurnishingandmattress.com/'">🌐 Website</button>
+
+    <!-- Hidden Review Card -->
+    <div id="review-card">
+        <p>Short on time? Use our quick-template review!</p>
+        <textarea id="review-text" readonly></textarea>
+        <button class="btn btn-copy" id="copy-btn" onclick="copyComment()">📋 Copy Comment</button>
+        <!-- Note: Using the clean Google Place ID link to open directly to the 5-star review box -->
+        <button class="btn btn-google" id="go-google-btn" style="display:none;" onclick="window.location.href='https://search.google.com/local/writereview?placeid=ChIJNfZ__w655zsRss9lwLQ40zA'">🚀 Open Google Reviews</button>
+    </div>
+
+    <script>
+        // Array of unique reviews based on actual products from the website
+        const reviews = [
+            "Absolutely love the memory foam mattress we bought from Indian Furnishing & Mattress! The quality is top-notch and the sleep experience has improved drastically.",
+            "Great collection of curtains and blinds. The team was very helpful in guiding us to choose the right fabrics for our living room. Truly 'The New Standard'!",
+            "I got a customised mattress made for my unique bed frame size. The fit is perfect and the comfort is unmatched. Best furnishing store in Thane!",
+            "Excellent service and huge variety of carpets and wallpapers. The staff is polite and patiently shows all options. Will definitely visit again for my home decor needs.",
+            "Purchased sofa cloth and pillows from here. The fabric quality is premium and prices are reasonable. Highly recommended in Chandanwadi.",
+            "We replaced our old mattresses here. Fantastic support and a great buying experience at Indian Furnishing & Mattress.",
+            "Beautiful vertical blinds and curtain tracks installed by their team. Very professional service and high-quality products.",
+            "A one-stop shop for all home furnishing needs in Thane. I bought artificial grass and PVC carpets for my balcony, and it looks stunning."
+        ];
+
+        function triggerReviewCard() {
+            // Pick a random review from the array
+            const randomIndex = Math.floor(Math.random() * reviews.length);
+            document.getElementById('review-text').value = reviews[randomIndex];
+            
+            // Show the card
+            document.getElementById('review-card').style.display = 'block';
+        }
+
+        function copyComment() {
+            const copyText = document.getElementById("review-text");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+            
+            // Copy to clipboard
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                // Change button text to show success
+                const copyBtn = document.getElementById("copy-btn");
+                copyBtn.innerText = "✅ Copied!";
+                copyBtn.style.backgroundColor = "#20c997"; // Lighter green
+                
+                // Reveal the final button to go to Google
+                document.getElementById("go-google-btn").style.display = "block";
+            });
+        }
+    </script>
+</body>
+</html>
