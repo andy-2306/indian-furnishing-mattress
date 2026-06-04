@@ -34,7 +34,6 @@
             margin-top: 2vh;
         }
 
-        /* Language Switcher */
         .lang-switcher {
             display: flex;
             justify-content: center;
@@ -65,7 +64,6 @@
             font-weight: 600;
         }
 
-        /* Glassmorphism Main Card */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(15px);
@@ -140,7 +138,6 @@
             object-fit: contain;
         }
 
-        /* Review Card Popup */
         #review-card {
             display: none;
             background: rgba(0, 0, 0, 0.6);
@@ -157,7 +154,6 @@
         #review-card p { font-weight: 500; margin-top: 0; font-size: 14px; }
         .sub-prompt { font-size: 12px !important; color: #d1d1d1; margin-bottom: 12px !important; }
 
-        /* Multi-Select Tags Styling */
         .tags-container {
             display: flex;
             flex-wrap: wrap;
@@ -187,7 +183,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        /* Review Text Area & Actions */
         #review-action-area {
             display: none;
             animation: slideUp 0.3s ease-out;
@@ -247,7 +242,6 @@
 </head>
 <body onload="initApp()">
     <div class="container">
-        <!-- Language Switcher: Marathi First, English Second, Hindi Third. -->
         <div class="lang-switcher">
             <button class="lang-btn active" onclick="setLanguage('mr')" id="btn-mr">मराठी</button>
             <button class="lang-btn" onclick="setLanguage('en')" id="btn-en">English</button>
@@ -286,12 +280,10 @@
                 </button>
             </div>
 
-            <!-- Hidden Interactive Review Card -->
             <div id="review-card">
                 <p id="txt-prompt">Short on time? Use our quick-template review!</p>
                 <p id="txt-sub-prompt" class="sub-prompt">Select the products you experienced (Select multiple if needed):</p>
                 
-                <!-- Multi-Select Buttons -->
                 <div class="tags-container" id="tags-container"></div>
 
                 <div id="review-action-area">
@@ -332,42 +324,66 @@
                     blinds: [
                         "इथले ब्लाइंड्स खूप छान आणि दर्जेदार आहेत.",
                         "आम्ही इथून ब्लाइंड्स घेतले, जे घराला खूप शोभून दिसतात.",
-                        "ब्लाइंड्सची क्वालिटी आणि बसवण्याचे काम अतिशय उत्तम झाले."
+                        "ब्लाइंड्सची क्वालिटी आणि बसवण्याचे काम अतिशय उत्तम झाले.",
+                        "खिडक्यांसाठी घेतलेले ब्लाइंड्स एकदम परफेक्ट बसले आहेत.",
+                        "ब्लाइंड्सचे डिझाईन आणि फिनिशिंग खूप प्रोफेशनल आहे.",
+                        "घराच्या सजावटीसाठी इथले ब्लाइंड्स हा सर्वोत्तम पर्याय आहे."
                     ],
                     carpets: [
                         "कार्पेट्सचे कलेक्शन खूप सुंदर आहे, घराला एकदम नवीन लुक मिळाला.",
                         "इथल्या प्रीमियम कार्पेट्सची क्वालिटी अप्रतिम आहे.",
-                        "मजबूत आणि उत्तम डिझाईनचे कार्पेट्स योग्य दरात मिळाले."
+                        "मजबूत आणि उत्तम डिझाईनचे कार्पेट्स योग्य दरात मिळाले.",
+                        "आम्ही हॉलसाठी कार्पेट घेतले, रंग आणि डिझाईन खूप छान आहे.",
+                        "कार्पेट्सची व्हरायटी खूप मोठी आहे, नक्की भेट द्या.",
+                        "अतिशय मऊ आणि आरामदायी कार्पेट इथून घेतले."
                     ],
                     curtains: [
                         "पडद्यांचे कापड आणि डिझाईन खूपच आकर्षक आहे.",
                         "घरासाठी सुंदर पडदे घेतले, यांची व्हरायटी खूप मोठी आहे.",
-                        "पडद्यांची शिलाई आणि क्वालिटी एकदम परफेक्ट आहे."
+                        "पडद्यांची शिलाई आणि क्वालिटी एकदम परफेक्ट आहे.",
+                        "इथले पडदे घराला एक प्रीमियम लुक देतात.",
+                        "पडद्यांचे रंग आणि फॅब्रिक दीर्घकाळ टिकणारे आहेत.",
+                        "आम्हाला हवे तसे कस्टमाइज्ड पडदे इथून बनवून मिळाले."
                     ],
                     fabrics: [
                         "सोफ्याचे नवीन कापड इथून घेतले, क्वालिटी एकदम नंबर वन आहे.",
                         "फॅब्रिकचे भरपूर ऑप्शन्स इथे उपलब्ध आहेत.",
-                        "मजबूत आणि टिकाऊ कापड योग्य दरात मिळाले."
+                        "मजबूत आणि टिकाऊ कापड योग्य दरात मिळाले.",
+                        "कुशन आणि सोफ्यासाठी अतिशय सुंदर फॅब्रिक्स इथून मिळाले.",
+                        "कपड्याचा पोत आणि रंग खूपच आकर्षक आहे.",
+                        "फॅब्रिक्स खरेदी करण्यासाठी हे सर्वात उत्तम ठिकाण आहे."
                     ],
                     mattresses: [
                         "इथून घेतलेली मॅट्रेस खूपच आरामदायी आहे.",
                         "झोपेच्या उत्तम अनुभवासाठी यांची मेमरी फोम मॅट्रेस एकदम बेस्ट आहे.",
-                        "मॅट्रेसची क्वालिटी अतिशय उत्तम असून पाठदुखीचा त्रास कमी झाला."
+                        "मॅट्रेसची क्वालिटी अतिशय उत्तम असून पाठदुखीचा त्रास कमी झाला.",
+                        "आम्ही कस्टमाइज्ड मॅट्रेस बनवून घेतली, फिटिंग आणि क्वालिटी एक नंबर आहे.",
+                        "योग्य दरात उत्तम दर्जाची गादी (मॅट्रेस) इथून मिळाली.",
+                        "मॅट्रेस खूपच मऊ आणि पाठीला आधार देणारी आहे. नक्की खरेदी करा."
                     ],
                     pillows: [
                         "आम्ही इथून नवीन उशा घेतल्या, फॅब्रिक खूप मऊ आणि आरामदायक आहे.",
                         "मानेच्या आधारासाठी इथल्या उशा खूप चांगल्या आहेत.",
-                        "उशांची क्वालिटी आणि दर्जा अतिशय उत्तम आहे."
+                        "उशांची क्वालिटी आणि दर्जा अतिशय उत्तम आहे.",
+                        "मेमरी फोमच्या उशा घेतल्या, झोप खूप शांत लागते.",
+                        "उशांचा आकार आणि मऊपणा खूप समाधानकारक आहे.",
+                        "वाजवी दरात एकदम भारी क्वालिटीच्या उशा मिळाल्या."
                     ],
                     vertical_blinds: [
                         "घरासाठी व्हर्टिकल ब्लाइंड्स घेतले, डिझाईन एकदम मॉडर्न आहे.",
                         "व्हर्टिकल ब्लाइंड्स बसवण्याची सर्व्हिस खूप फास्ट आणि उत्तम होती.",
-                        "ऑफिससाठी व्हर्टिकल ब्लाइंड्स घेतले, लुक खूप प्रोफेशनल आला आहे."
+                        "ऑफिससाठी व्हर्टिकल ब्लाइंड्स घेतले, लुक खूप प्रोफेशनल आला आहे.",
+                        "व्हर्टिकल ब्लाइंड्सची क्वालिटी आणि फिटिंग एकदम अचूक आहे.",
+                        "खूप छान आणि मजबूत व्हर्टिकल ब्लाइंड्स इथून मिळाले.",
+                        "यांच्या टीमने अगदी व्यवस्थितपणे व्हर्टिकल ब्लाइंड्स बसवून दिले."
                     ],
                     other: [
                         "दुकानदारांचा स्वभाव खूप नम्र आहे आणि उत्तम सेवा मिळाली.",
                         "ग्राहकांना इथून योग्य मार्गदर्शन आणि मदत मिळते.",
-                        "इंडियन फर्निशिंग अँड मॅट्रेसची सर्व्हिस खूपच फास्ट आणि विश्वासार्ह आहे."
+                        "इंडियन फर्निशिंग अँड मॅट्रेसची सर्व्हिस खूपच फास्ट आणि विश्वासार्ह आहे.",
+                        "कोणतीही वस्तू घेताना हे लोक उत्तम सल्ले देतात.",
+                        "दुकानातील वातावरण खूप छान आहे, नक्की भेट द्या.",
+                        "यांची ग्राहक सेवा आणि गुणवत्ता खरोखरच कौतुकास्पद आहे."
                     ]
                 }
             },
@@ -395,42 +411,66 @@
                     blinds: [
                         "Highly impressed with their window blinds and quick installation.",
                         "The blinds we bought fit perfectly and look great.",
-                        "Great quality blinds that really elevate the room."
+                        "Great quality blinds that really elevate the room.",
+                        "Their collection of blinds is extremely modern and stylish.",
+                        "The fitting and finish of the blinds are very professional.",
+                        "Very happy with the durability and look of the new blinds."
                     ],
                     carpets: [
                         "Best place for premium carpets in the area.",
                         "The carpet we purchased completely transformed our living room!",
-                        "Huge variety of carpets to choose from with excellent quality."
+                        "Huge variety of carpets to choose from with excellent quality.",
+                        "The texture and softness of their carpets are unmatched.",
+                        "Bought a beautiful carpet at a very reasonable price.",
+                        "Highly recommend their carpets for a luxurious home feel."
                     ],
                     curtains: [
                         "Amazing variety of home decor items. I bought beautiful curtains.",
                         "The curtain fabrics are top-notch and elegantly stitched.",
-                        "Very happy with the design and quality of the curtains we chose."
+                        "Very happy with the design and quality of the curtains we chose.",
+                        "They offer excellent custom curtain stitching services.",
+                        "The curtains block light perfectly and look very premium.",
+                        "Fantastic range of colors and patterns for curtains."
                     ],
                     fabrics: [
                         "Purchased sofa fabrics from here. The material quality is top-notch.",
                         "They have a massive selection of high-quality upholstery fabrics.",
-                        "The fabric we bought feels very premium and durable."
+                        "The fabric we bought feels very premium and durable.",
+                        "Found the exact fabric shade I was looking for my cushions.",
+                        "The texture of their sofa cloths is incredibly soft yet strong.",
+                        "Great place for all kinds of furnishing fabrics."
                     ],
                     mattresses: [
                         "Replaced our old mattress with a memory foam one from here, best decision!",
                         "The custom mattress we ordered is incredibly comfortable.",
-                        "Excellent quality mattresses that provide great back support."
+                        "Excellent quality mattresses that provide great back support.",
+                        "I've been sleeping so much better since we bought our new mattress here.",
+                        "Top-notch quality and perfect firmness. Highly recommend their mattresses.",
+                        "Very premium feel to the mattress, and the pricing was very reasonable."
                     ],
                     pillows: [
                         "Bought memory foam pillows and they provide excellent neck support.",
                         "The pillows are super soft and very comfortable.",
-                        "Very satisfied with the quality of the pillows purchased here."
+                        "Very satisfied with the quality of the pillows purchased here.",
+                        "These pillows have completely cured my neck stiffness.",
+                        "Great shape retention and softness in their pillows.",
+                        "Excellent pillows at a very pocket-friendly price."
                     ],
                     vertical_blinds: [
                         "Their vertical blinds collection is fantastic and very modern.",
                         "Gave my office space a very clean look with their vertical blinds.",
-                        "The vertical blinds were installed very professionally."
+                        "The vertical blinds were installed very professionally.",
+                        "Highly functional and smooth-operating vertical blinds.",
+                        "The installation team for the vertical blinds was quick and polite.",
+                        "Perfect vertical blinds for large windows. Great quality!"
                     ],
                     other: [
                         "Very prompt service and a highly polite staff.",
                         "The store has a wonderful ambiance and a helpful team.",
-                        "Highly recommend this place for all home decor needs!"
+                        "Highly recommend this place for all home decor needs!",
+                        "They listen to your requirements and give the best suggestions.",
+                        "A truly premium shopping experience for home furnishings.",
+                        "Reliable service, great products, and completely trustworthy."
                     ]
                 }
             },
@@ -458,42 +498,66 @@
                     blinds: [
                         "इनके विंडो ब्लाइंड्स की क्वालिटी बहुत अच्छी है।",
                         "हमने यहाँ से ब्लाइंड्स लिए और वे बहुत शानदार दिखते हैं।",
-                        "ब्लाइंड्स और उनको लगाने की सर्विस से मैं बहुत प्रभावित हूँ।"
+                        "ब्लाइंड्स और उनको लगाने की सर्विस से मैं बहुत प्रभावित हूँ।",
+                        "ब्लाइंड्स की फिटिंग एकदम परफेक्ट और प्रोफेशनल तरीके से की गई।",
+                        "घर के लिए बहुत ही आकर्षक और मजबूत ब्लाइंड्स मिले।",
+                        "ब्लाइंड्स का कलेक्शन काफी मॉडर्न और प्रीमियम है।"
                     ],
                     carpets: [
                         "कालीन (कार्पेट) का बहुत बड़ा और शानदार कलेक्शन है।",
                         "यहाँ का कार्पेट बिछाने के बाद मेरे घर की रौनक बढ़ गई।",
-                        "प्रीमियम क्वालिटी के कार्पेट सही दाम पर मिल गए।"
+                        "प्रीमियम क्वालिटी के कार्पेट सही दाम पर मिल गए।",
+                        "कार्पेट का फैब्रिक बहुत ही मुलायम और टिकाऊ है।",
+                        "घर की सजावट के लिए इनका कार्पेट कलेक्शन सबसे बेहतरीन है।",
+                        "शानदार रंग और डिज़ाइन वाले कार्पेट बहुत ही अच्छे रेट में मिले।"
                     ],
                     curtains: [
                         "पर्दों के लिए इससे बेहतर दुकान नहीं है, डिज़ाइन बहुत प्यारे हैं।",
                         "कपड़े की क्वालिटी और पर्दों की सिलाई बहुत बेहतरीन है।",
-                        "हमने यहाँ से पर्दे खरीदे और घर का लुक एकदम बदल गया।"
+                        "हमने यहाँ से पर्दे खरीदे और घर का लुक एकदम बदल गया।",
+                        "पर्दों के रंग बहुत खिले हुए हैं और कपड़ा काफी मजबूत है।",
+                        "अपने हिसाब से पर्दे बनवाने के लिए यह सबसे अच्छी जगह है।",
+                        "प्रीमियम लुक वाले पर्दे बहुत ही वाजिब दाम में मिल गए।"
                     ],
                     fabrics: [
                         "सोफा बनाने के लिए फैब्रिक यहीं से लिया था, बहुत मजबूत है।",
                         "इनके पास सोफे और कुशन के कपड़ों की बहुत अच्छी वैरायटी है।",
-                        "फैब्रिक की क्वालिटी एकदम प्रीमियम है और दाम भी सही हैं।"
+                        "फैब्रिक की क्वालिटी एकदम प्रीमियम है और दाम भी सही हैं।",
+                        "कपड़े का रंग और बनावट बिल्कुल वैसी ही है जैसी मुझे चाहिए थी।",
+                        "फर्नीचर के कपड़ों के लिए यहाँ बहुत सारे शानदार विकल्प हैं।",
+                        "बहुत ही उम्दा फैब्रिक मिला, सर्विस भी काफी अच्छी रही।"
                     ],
                     mattresses: [
                         "यहाँ से लिया गया गद्दा बहुत ही आरामदायक है।",
                         "गद्दों की क्वालिटी बहुत बढ़िया है, नींद भी अच्छी आती है।",
-                        "पीठ दर्द के लिए इनका मेमोरी फोम गद्दा सबसे अच्छा है।"
+                        "पीठ दर्द के लिए इनका मेमोरी फोम गद्दा सबसे अच्छा है।",
+                        "हमने अपने बेड के नाप का कस्टमाइज़्ड गद्दा बनवाया, फिटिंग एकदम सही है।",
+                        "गद्दे की सॉफ्टनेस और क्वालिटी दोनों ही लाजवाब हैं।",
+                        "यहाँ के गद्दे प्रीमियम हैं और इनकी लाइफ भी काफी अच्छी लगती है।"
                     ],
                     pillows: [
                         "तकियों की क्वालिटी बहुत नरम और आरामदायक है।",
                         "गर्दन के दर्द से आराम के लिए इनके तकिए बहुत अच्छे हैं।",
-                        "सही दाम में बेहतरीन और आरामदायक तकिए मिले।"
+                        "सही दाम में बेहतरीन और आरामदायक तकिए मिले।",
+                        "मेमोरी फोम वाले तकिए खरीदे, रात की नींद बहुत अच्छी आती है।",
+                        "तकियों का शेप बहुत अच्छा है और वे जल्दी दबते नहीं हैं।",
+                        "बहुत ही बढ़िया क्वालिटी के तकिए, मैं 100% रिकमेंड करूँगा।"
                     ],
                     vertical_blinds: [
                         "घर के लिए वर्टिकल ब्लाइंड्स लगवाए, डिज़ाइन बहुत ही मॉडर्न है।",
                         "वर्टिकल ब्लाइंड्स की फिटिंग बहुत सफाई से और जल्दी की गई।",
-                        "ऑफिस के लिए इनके वर्टिकल ब्लाइंड्स सबसे बेहतरीन विकल्प हैं।"
+                        "ऑफिस के लिए इनके वर्टिकल ब्लाइंड्स सबसे बेहतरीन विकल्प हैं।",
+                        "वर्टिकल ब्लाइंड्स का मैकेनिज्म बहुत स्मूथ काम करता है।",
+                        "इनके वर्टिकल ब्लाइंड्स से कमरे को एक बहुत ही प्रोफेशनल लुक मिला है।",
+                        "बहुत ही उम्दा क्वालिटी के वर्टिकल ब्लाइंड्स और सर्विस लाजवाब थी।"
                     ],
                     other: [
                         "इंडियन फर्निशिंग की कस्टमर सर्विस बहुत अच्छी और मददगार है।",
                         "स्टाफ का व्यवहार बहुत अच्छा है और वे सही सलाह देते हैं।",
-                        "घर सजाने के सामान के लिए मैं सबको यहीं आने की सलाह दूँगा।"
+                        "घर सजाने के सामान के लिए मैं सबको यहीं आने की सलाह दूँगा।",
+                        "बिना कुछ खरीदे भी उन्होंने हमें बहुत अच्छे से सारी जानकारी दी।",
+                        "स्टोर का माहौल बहुत ही शानदार है और खरीदारी का अनुभव बेहतरीन रहा।",
+                        "इनकी सर्विस बहुत ही तेज और भरोसेमंद है।"
                     ]
                 }
             }
@@ -502,6 +566,7 @@
         const productKeys = ['blinds', 'carpets', 'curtains', 'fabrics', 'mattresses', 'pillows', 'vertical_blinds', 'other'];
         let currentLang = 'mr'; 
         let selectedProducts = []; 
+        let lastUsedIndices = {}; // Anti-Repeat Tracker
 
         function initApp() {
             setLanguage('mr');
@@ -580,7 +645,16 @@
             
             selectedProducts.forEach(key => {
                 const sentenceVariations = data[currentLang].reviews[key];
-                const randomIndex = Math.floor(Math.random() * sentenceVariations.length);
+                let randomIndex;
+                
+                // Anti-Repeat Logic: Keep picking a random number until it's DIFFERENT from the last one used
+                do {
+                    randomIndex = Math.floor(Math.random() * sentenceVariations.length);
+                } while (sentenceVariations.length > 1 && lastUsedIndices[key] === randomIndex);
+                
+                // Save this new index so we don't use it next time
+                lastUsedIndices[key] = randomIndex; 
+                
                 combinedReview.push(sentenceVariations[randomIndex]);
             });
             
