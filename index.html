@@ -298,7 +298,7 @@
                     <textarea id="review-text" readonly></textarea>
                     
                     <div class="action-buttons">
-                        <button class="btn-refresh" onclick="generateReview()">🔄 <span id="txt-refresh">Refresh</span></button>
+                        <button class="btn-refresh" onclick="generateReview()">🔄 <span id="txt-rephrase">Rephrase</span></button>
                         <button class="btn-copy" id="copy-btn" onclick="copyAndRedirect()">📋 <span id="txt-copy">Copy & Continue</span></button>
                     </div>
                 </div>
@@ -316,7 +316,7 @@
                 prompt: "वेळ कमी आहे? आमचा हा तयार रिव्ह्यू वापरा!",
                 subPrompt: "तुम्ही खरेदी केलेली उत्पादने निवडा (एकापेक्षा जास्त निवडू शकता):",
                 copyBtn: "कॉपी करा आणि पुढे जा",
-                refreshBtn: "नवीन बनवा",
+                rephraseBtn: "पुन्हा लिहा",
                 copiedMsg: "✅ कॉपी झाले!",
                 products: {
                     blinds: "ब्लाइंड्स (Blinds)",
@@ -379,7 +379,7 @@
                 prompt: "Short on time? Use our quick-template review!",
                 subPrompt: "Select the products you experienced (Select multiple if needed):",
                 copyBtn: "Copy & Continue",
-                refreshBtn: "Refresh",
+                rephraseBtn: "Rephrase",
                 copiedMsg: "✅ Copied!",
                 products: {
                     blinds: "Blinds",
@@ -442,7 +442,7 @@
                 prompt: "समय कम है? हमारे इस टेम्पलेट का उपयोग करें!",
                 subPrompt: "चुनें कि आपने हमारे साथ क्या अनुभव किया (एक से अधिक चुन सकते हैं):",
                 copyBtn: "कॉपी करें और आगे बढ़ें",
-                refreshBtn: "नया बनाएँ",
+                rephraseBtn: "फिर से लिखें",
                 copiedMsg: "✅ कॉपी हो गया!",
                 products: {
                     blinds: "ब्लाइंड्स (Blinds)",
@@ -501,7 +501,7 @@
 
         const productKeys = ['blinds', 'carpets', 'curtains', 'fabrics', 'mattresses', 'pillows', 'vertical_blinds', 'other'];
         let currentLang = 'mr'; 
-        let selectedProducts = []; // Array to store multiple selections
+        let selectedProducts = []; 
 
         function initApp() {
             setLanguage('mr');
@@ -510,11 +510,9 @@
         function setLanguage(lang) {
             currentLang = lang;
             
-            // Update Active Button UI
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById('btn-' + lang).classList.add('active');
 
-            // Update Text Elements
             document.getElementById('slogan').innerText = data[lang].slogan;
             document.getElementById('txt-google').innerText = data[lang].google;
             document.getElementById('txt-insta').innerText = data[lang].insta;
@@ -522,16 +520,13 @@
             document.getElementById('txt-prompt').innerText = data[lang].prompt;
             document.getElementById('txt-sub-prompt').innerText = data[lang].subPrompt;
             document.getElementById('txt-copy').innerText = data[lang].copyBtn;
-            document.getElementById('txt-refresh').innerText = data[lang].refreshBtn;
+            document.getElementById('txt-rephrase').innerText = data[lang].rephraseBtn;
             
-            // Reset Copy Button styling
             const copyBtn = document.getElementById('copy-btn');
             copyBtn.style.backgroundColor = "#D4AF37";
 
-            // Redraw tags in the new language
             renderTags();
 
-            // If tags are already selected, regenerate the review in the new language instantly
             if (selectedProducts.length > 0) {
                 generateReview();
             }
@@ -546,7 +541,6 @@
                 btn.className = 'tag-btn ' + (selectedProducts.includes(key) ? 'active-tag' : '');
                 btn.innerText = data[currentLang].products[key];
                 
-                // Add click listener to toggle the tag
                 btn.onclick = () => toggleTag(key);
                 
                 container.appendChild(btn);
@@ -556,16 +550,14 @@
         function toggleTag(key) {
             const index = selectedProducts.indexOf(key);
             
-            // If already selected, remove it. If not, add it.
             if (index > -1) {
                 selectedProducts.splice(index, 1);
             } else {
                 selectedProducts.push(key);
             }
             
-            renderTags(); // Re-render to show active/inactive state visually
+            renderTags(); 
             
-            // Show or hide the text area based on selection
             if (selectedProducts.length > 0) {
                 document.getElementById('review-action-area').style.display = 'block';
                 generateReview();
@@ -586,17 +578,14 @@
             
             let combinedReview = [];
             
-            // Loop through every selected product and pick a random sentence for it
             selectedProducts.forEach(key => {
                 const sentenceVariations = data[currentLang].reviews[key];
                 const randomIndex = Math.floor(Math.random() * sentenceVariations.length);
                 combinedReview.push(sentenceVariations[randomIndex]);
             });
             
-            // Join all the random sentences together into one fluid paragraph
             document.getElementById('review-text').value = combinedReview.join(' ');
             
-            // Reset the copy button just in case they clicked refresh after copying
             document.getElementById('copy-btn').style.backgroundColor = "#D4AF37";
             document.getElementById('txt-copy').innerText = data[currentLang].copyBtn;
         }
