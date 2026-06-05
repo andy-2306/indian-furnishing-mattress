@@ -300,7 +300,6 @@
     </div>
 
     <script>
-        // The Engine Configuration: 4 opening sentences * 5 middle * 5 closing = 100 unique sentences per product.
         const generatorData = {
             mr: {
                 slogan: "उत्तम कामासाठी.. एक नवीन मानक..", google: "गुगल रिव्ह्यू", insta: "इंस्टाग्राम", web: "वेबसाईट",
@@ -434,42 +433,49 @@
         let currentLang = 'mr'; 
         let selectedProducts = []; 
         
-        // Storage for exactly 100 generated sentences per product, per language
         const generatedReviews = { mr: {}, en: {}, hi: {} };
-        // Storage to keep track of the sequential index (1 to 100) per product, per language
         const sequentialCounters = { mr: {}, en: {}, hi: {} };
 
-        // Core Engine: This runs instantly when the page loads
         function initApp() {
-            // Build the 100 variations for every product in every language
+            // Build the 100 variations + SHUFFLE THE SENTENCE STRUCTURE
             for (let lang in generatorData) {
                 productKeys.forEach(prodKey => {
                     let sentences100 = [];
-                    const p1Arr = generatorData[lang][prodKey].p1; // 4 items
-                    const p2Arr = generatorData[lang][prodKey].p2; // 5 items
-                    const p3Arr = generatorData[lang].shared_p3;   // 5 items
+                    const p1Arr = generatorData[lang][prodKey].p1; 
+                    const p2Arr = generatorData[lang][prodKey].p2; 
+                    const p3Arr = generatorData[lang].shared_p3;   
 
-                    // 4 * 5 * 5 = exactly 100 unique combinations
                     for (let i = 0; i < p1Arr.length; i++) {
                         for (let j = 0; j < p2Arr.length; j++) {
                             for (let k = 0; k < p3Arr.length; k++) {
-                                sentences100.push(`${p1Arr[i]} ${p2Arr[j]} ${p3Arr[k]}`);
+                                
+                                let parts = [p1Arr[i], p2Arr[j], p3Arr[k]];
+                                let order = (i + j + k) % 6; // Determines structure based on mathematical index
+                                let sentence = "";
+
+                                // Structural Shuffle - Reordering the placement of p1, p2, and p3
+                                if (order === 0) sentence = `${parts[0]} ${parts[1]} ${parts[2]}`;
+                                else if (order === 1) sentence = `${parts[0]} ${parts[2]} ${parts[1]}`;
+                                else if (order === 2) sentence = `${parts[1]} ${parts[0]} ${parts[2]}`;
+                                else if (order === 3) sentence = `${parts[1]} ${parts[2]} ${parts[0]}`;
+                                else if (order === 4) sentence = `${parts[2]} ${parts[0]} ${parts[1]}`;
+                                else if (order === 5) sentence = `${parts[2]} ${parts[1]} ${parts[0]}`;
+
+                                sentences100.push(sentence);
                             }
                         }
                     }
 
-                    // To prevent sentences from sounding too similar sequentially, we shuffle them securely using a prime offset (27).
-                    // This ensures all 100 spots are filled exactly once, but thoroughly mixed.
+                    // Scramble the 100 array so they don't play back in obvious thematic clumps
                     let mixed100 = new Array(100);
                     for (let i = 0; i < 100; i++) {
                         mixed100[(i * 27) % 100] = sentences100[i];
                     }
 
                     generatedReviews[lang][prodKey] = mixed100;
-                    sequentialCounters[lang][prodKey] = 0; // Start tracker at 0
+                    sequentialCounters[lang][prodKey] = 0; 
                 });
             }
-            // Set default language
             setLanguage('mr');
         }
 
@@ -539,26 +545,19 @@
             }, 100);
         }
 
-        // Display the sequential review and increment the counter
         function displayReview() {
             if(selectedProducts.length === 0) return;
             
             let combinedReview = [];
             
             selectedProducts.forEach(key => {
-                // Get the current index for this product (0 to 99)
                 let currentIndex = sequentialCounters[currentLang][key] % 100;
-                
-                // Pull the review from the 100 unique mixed reviews array
                 combinedReview.push(generatedReviews[currentLang][key][currentIndex]);
-                
-                // Increment the counter so the NEXT click gets the next unique review
                 sequentialCounters[currentLang][key]++;
             });
             
             document.getElementById('review-text').value = combinedReview.join(' ');
             
-            // Reset Copy button color if Rephrase is clicked
             document.getElementById('copy-btn').style.backgroundColor = "#D4AF37";
             document.getElementById('txt-copy').innerText = generatorData[currentLang].copyBtn;
         }
